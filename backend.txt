@@ -1,0 +1,17 @@
+Milestones to complete.
+1.Implement peer to peer messaging using ipfs.
+2.Implement Decentralized storage in MongoDB.
+3.Test decentralized storage implemented in MongoDB and find alternatives if required.
+4.Create and test smart contracts for access & storage purposes.
+
+P2P communication
+1.ipfs protocol may be used to for file transfer(audio video photo)-first uploaded into the distributed storage by the sender and fetched from the distributed servers by the reciever.
+2.text messages may be transferred using a conventional protocol and  then store in the clients local database.
+3.conventional protocol can only be feasible if both users are online but if one of em is offline then we may need to find an alternative for that.
+
+search for "p2p chat app in python" in youtube.
+
+basic chat app in python-text msgs only
+1.connect two online users and enforce chat window using some conventional protocol(check about twisted library in python)
+2.connect mongodb databases in both users machines,connect dbs to python app.
+3.store and display chat window history using crud operations in local mongodb database.
