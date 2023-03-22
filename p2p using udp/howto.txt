@@ -1,0 +1,19 @@
+
+this subsection of code allows to establish a UDP based connection between 2 systems connected to same LAN(WIFI network).
+we need atleast 2 devices to run the chat system
+1.client systems or systems which will chat with each other must have client.py file
+2.server system must have the server.py file
+
+Execution
+1.Run server.py in server system-python server.py
+2.Run client.py file in client systems or in a new terminal window in server system(if only two devices are only present)-python client.py
+3.In server system terminal,once client.py is executed then register msgs will be seen in server system with client IPs.
+4.Once connected chat window will open in both client systems then we can start chatting
+
+Role of Server system(host of server.py)
+this system is just to exchange ip address of both client systems to establish the connection.once UDP connection is established then role of server.py is over.
+
+IP address
+->IPv4 address is used and in server.py we need to add the servers's private IPv4 address so that clients can find the server for establishing the connection.
+->to get private IPv4 address type ipconfig in terminal.
+Note:Ipv4 address can change so beware and also the clients first punch a hole in firewall before establishing the connection.
