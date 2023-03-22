@@ -8,6 +8,7 @@ rendezvous = ('192.168.29.252', 55555)#private ip address of server is displayed
 print('connecting to rendezvous server')
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 sock.bind(('0.0.0.0', 50001))
 sock.sendto(b'0', rendezvous)
 
@@ -33,6 +34,7 @@ print('  dest port:   {}\n'.format(dport))
 print('punching hole')
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 sock.bind(('0.0.0.0', sport))
 sock.sendto(b'0', (ip, dport))
 
@@ -44,6 +46,7 @@ print('ready to exchange messages\n')
 
 def listen():
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     sock.bind(('0.0.0.0', sport))
 
     while True:
@@ -57,6 +60,7 @@ listener.start()
 # send messages
 # equiv: echo 'xxx' | nc -u -p 50002 x.x.x.x 50001
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 sock.bind(('0.0.0.0', dport))
 
 while True:
