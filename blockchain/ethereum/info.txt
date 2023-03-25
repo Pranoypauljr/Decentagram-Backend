@@ -1,0 +1,4 @@
+https://www.youtube.com/watch?v=coQ5dg8wM2o-tutorial
+
+truffle framework-installed using node-the framework is used to create dapps in ethereum using solidity programming language.
+truffle ganache-it is like postman for blockchain-helps to create a local blockchain environment to test smart contracts etc.

@@ -1,5 +1,6 @@
 Milestones to complete.
-1.Implement peer to peer messaging using ipfs.
+1(a).Implement peer to peer messaging using ipfs+ethereum+truffle etc,integrate it with frontend that is complete chat sections only.
+1(b).Implement handling of other social media data like posts,likes etc.
 2.Implement Decentralized storage in MongoDB.
 3.Test decentralized storage implemented in MongoDB and find alternatives if required.
 4.Create and test smart contracts for access & storage purposes.
