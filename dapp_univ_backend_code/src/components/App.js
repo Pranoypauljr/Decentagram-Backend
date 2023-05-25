@@ -11,8 +11,8 @@ import { Buffer } from 'buffer'
 // const { create: ipfsClient }= require('ipfs-http-client')
 // const ipfs = ipfsClient({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' }) // leaving out the arguments will default to these values
 
-const projectId='2QEO5EwQKOiXediYhXDbW2Q5dNn';
-const projectSecret='f0dca80af13ef4a49d052dbf919e5783';
+const projectId='xxxxxx';
+const projectSecret='xxxxxxxx';
 const auth = 'Basic ' + Buffer.from(projectId + ':' + projectSecret).toString('base64');
 const ipfs=create({host: 'ipfs.infura.io:5001', port: 5001, protocol: 'https',headers:{
   authorization:auth
