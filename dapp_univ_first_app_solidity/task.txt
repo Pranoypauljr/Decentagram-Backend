@@ -1,0 +1,4 @@
+list task in smart contract
+list task in console
+list task in client side application
+list task in test
