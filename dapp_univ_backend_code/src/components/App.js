@@ -11,8 +11,8 @@ import { Buffer } from 'buffer'
 // const { create: ipfsClient }= require('ipfs-http-client')
 // const ipfs = ipfsClient({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' }) // leaving out the arguments will default to these values
 
-const projectId='xxxxxxx';
-const projectSecret='xxxxxxx';
+const projectId='2QEO5EwQKOiXediYhXDbW2Q5dNn';
+const projectSecret='f0dca80af13ef4a49d052dbf919e5783';
 const auth = 'Basic ' + Buffer.from(projectId + ':' + projectSecret).toString('base64');
 const ipfs=create({host: 'ipfs.infura.io:5001', port: 5001, protocol: 'https',headers:{
   authorization:auth
@@ -54,6 +54,19 @@ class App extends Component {
     this.setState({decentragram})
     const imagesCount=await Decentragram.methods.imagesCount().call()
     this.setState({imagesCount})
+    //load image
+    for (var i = 1; i <= imagesCount; i++) {
+        const image = await decentragram.methods.images(i).call()
+        this.setState({
+          images: [...this.state.images, image]
+        })
+      }
+
+    // Sort images. Show highest tipped images first
+      this.setState({
+        images: this.state.images.sort((a,b) => b.tipAmount - a.tipAmount )
+      })
+
     this.setState({loading:false})
     }
     else{
@@ -94,7 +107,9 @@ class App extends Component {
       const cid=await ipfs.add(this.state.buffer)
       console.log(cid)
       //this.setState({ loading: true })
-      this.state.decentragram.methods.uploadImage(cid.hash, description).send({ from: this.state.account })
+      this.state.decentragram.methods.uploadImage(cid.hash, description).send({ from: this.state.account }).on('transactionHash', (hash) => {
+        this.setState({ loading: false })
+      })
     }
     catch(err){
       console.log(err)
@@ -103,6 +118,13 @@ class App extends Component {
     // console.log(id)
   }
 
+  //tip image owner
+  tipImageOwner(id, tipAmount) {
+    this.setState({ loading: true })
+    this.state.decentragram.methods.tipImageOwner(id).send({ from: this.state.account, value: tipAmount }).on('transactionHash', (hash) => {
+      this.setState({ loading: false })
+    })
+  }
 
   constructor(props) {
     super(props)
@@ -122,8 +144,10 @@ class App extends Component {
         { this.state.loading
           ? <div id="loader" className="text-center mt-5"><p>Loading...</p></div>
           : <Main
+            images={this.state.images}
             captureFile={this.captureFile}
             uploadImage={this.uploadImage}
+            tipImageOwner={this.tipImageOwner}
             />
           }
       </div>
